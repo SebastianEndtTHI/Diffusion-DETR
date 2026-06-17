@@ -19,8 +19,6 @@ The deep learning training pipeline, utilizing a Detection Transformer (DETR) ar
 ### `evaluation/`
 Evaluation framework calculating relevant metrics and creating visual evaluation plots.
 * **`evaluation.ipynb`**: Central Jupyter Notebook for evaluating model performance, calculating metrics, and creating plots.
-* **`inference_eval/`**: Directory where `*.csv` files containing network predictions on the test set resulting from running `run_inference.py` are stored for the evaluation notebook.
-* **`evaluation_plots/`**: The rendered, final evaluation plots organized by experiment.
 
 
 
