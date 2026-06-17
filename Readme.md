@@ -13,13 +13,14 @@ The data generation pipeline that creates synthetic pairwise datasets containing
 ### `DETR_training/`
 The deep learning training pipeline, utilizing a Detection Transformer (DETR) architecture mapping the decay curves to spectra components.
   * **`dl_models.py`**, **`train_utils.py`**: Model architecture definitions and standard training loop utilities.
-  * **`match_loss.py`**: Implementations of custom matching losses (such as modified focal loss) and Hungarian matching.
+  * **`match_loss.py`**: Implementations of custom loss functions and Hungarian matching.
+  * **`run_inference.py`**: Script for model inference: Applies the model to each sample of the test dataset and stores predictions into a csv file to be used by the evaluation notebook.
 
 ### `evaluation/`
 Evaluation framework calculating relevant metrics and creating visual evaluation plots.
-* **`evaluation.ipynb`**: Central Jupyter Notebook for evaluating model performance, calculating metrics, and comparing different training run configurations.
-* **`eval_data/`**: Directory where `*.csv` files containing network predictions on the test set (`eval_data/`) resulting from running `run_inference.py` are stored for the evaluation notebook.
-* **`evaluation_plots_final/`**: The rendered, final evaluation plots organized by experiment and loss configuration (e.g. `focal_loss`, `mapeweight`, `angular_loss`).
+* **`evaluation.ipynb`**: Central Jupyter Notebook for evaluating model performance, calculating metrics, and creating plots.
+* **`inference_eval/`**: Directory where `*.csv` files containing network predictions on the test set resulting from running `run_inference.py` are stored for the evaluation notebook.
+* **`evaluation_plots/`**: The rendered, final evaluation plots organized by experiment.
 
 
 
