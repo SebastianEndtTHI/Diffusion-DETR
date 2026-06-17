@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.venv/
+*.pdf
+*.svg
+*.png
+*.jpg
+*.csv
+*.out
+*.eps
+experiments/
+evaluation_plots/
+inference_eval/
