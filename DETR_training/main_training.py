@@ -71,9 +71,9 @@ def get_args_parser():
 
     parser.add_argument('--use_normalized_angular_loss', default=True, type=bool, help="activating normalized angular loss for direction prediction.")
 
-    parser.add_argument('--weighted_loss', default=True, type=bool, help="activating weighting of prediction-target combinations on target weight.")
+    parser.add_argument('--weighted_loss', default=True, type=bool, help="activating weighting of MD, FA and direction loss on target weight.")
 
-    parser.add_argument('--weighted_direction_loss', default=True, type=bool, help="activating weighting of direction loss on target weight.")
+    parser.add_argument('--weighted_direction_loss', default=True, type=bool, help="activating weighting of direction loss on target FA value.")
 
     parser.add_argument('--seed', default=42, type=int, help="global seed for reproducibility.")
 
