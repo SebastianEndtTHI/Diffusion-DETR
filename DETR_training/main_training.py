@@ -32,7 +32,7 @@ def get_args_parser():
     parser.add_argument('--opt_betas', default=(0.9,0.98), type=tuple, help="AdamW parameters.")
 
     parser.add_argument('--b_size', default=256, type=int)
-    parser.add_argument('--epochs', default=400, type=int)
+    parser.add_argument('--epochs', default=200, type=int)
     parser.add_argument('--early_stop_patience', default=100, type=int, help="early stopping patience.")
     
     parser.add_argument('--device', default="cuda", type=str)
@@ -112,7 +112,7 @@ def main(args):
 
     # load weights of trained model if defined
     if args.model_path:
-        model.load_state_dict(torch.load(args.model_path, weights_only=True))
+        models.load_state_dict_compat(model, torch.load(args.model_path, weights_only=True))
 
     model.to(args.device)
 

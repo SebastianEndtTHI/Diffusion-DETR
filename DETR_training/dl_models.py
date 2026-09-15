@@ -3,6 +3,36 @@ from torch import nn
 from torch.nn import functional as F
 
 
+def load_state_dict_compat(model, state_dict):
+    """Load a checkpoint while accepting older feature extractor key layouts."""
+
+    try:
+        model.load_state_dict(state_dict)
+        return
+    except RuntimeError:
+        pass
+
+    remapped_state_dict = {}
+    remapped = False
+    for key, value in state_dict.items():
+        new_key = key
+
+        if key.startswith("feature_extractor.") and not key.startswith("feature_extractor.encoder."):
+            new_key = "feature_extractor.encoder." + key[len("feature_extractor."):]
+            remapped = True
+        elif key.startswith("feature_extractor.encoder."):
+            new_key = "feature_extractor." + key[len("feature_extractor.encoder."):]
+            remapped = True
+
+        remapped_state_dict[new_key] = value
+
+    if remapped:
+        model.load_state_dict(remapped_state_dict)
+        return
+
+    model.load_state_dict(state_dict)
+
+
 
 # Defining the MLP encoder that can be used standalone or as feature extractor for the transformer encoder
 class MLP_Encoder(nn.Module):

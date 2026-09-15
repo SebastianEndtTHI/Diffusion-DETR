@@ -8,6 +8,7 @@ __pycache__/
 *.csv
 *.out
 *.eps
+*.zip
 experiments/
 evaluation_plots/
 inference_eval/
