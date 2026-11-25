@@ -73,9 +73,9 @@ def main():
     parser.add_argument('--b_size', default=256, type=int, help="Batch size for inference")
     job_args = parser.parse_args()
 
-    experiments_dir = ".\\DETR_training\\experiments"
-    test_data_dir = ".\\datagen\\data\\test"
-    val_data_dir = ".\\datagen\\data\\validation"
+    experiments_dir = os.path.join(".", "DETR_training", "experiments")
+    test_data_dir = os.path.join(".", "datagen", "data", "test")
+    val_data_dir = os.path.join(".", "datagen", "data", "validation")
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
     print(f"Using device: {device}")

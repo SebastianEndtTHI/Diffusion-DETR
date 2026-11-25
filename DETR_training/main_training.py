@@ -39,7 +39,7 @@ def get_args_parser():
 
 
     # model parameters
-    parser.add_argument('--input_dim', default=166, type=int)
+    parser.add_argument('--input_dim', default=None, type=int, help="signal length; None = number of mri_sig columns of the training data.")
     parser.add_argument('--hidden_dim', default=512, type=int)
 
     parser.add_argument('--fs_dim', default=256, type=int, help="size of feature and query vectors.")
@@ -106,6 +106,11 @@ def main(args):
     args.model_save_path = os.path.join(args.save_path, "detr_model")
     args.log_save_path = os.path.join(args.save_path, "detr_logs")
     args.config_save_path = os.path.join(args.save_path, "detr_config.json")
+
+    # signal length from the training data unless given
+    if args.input_dim is None:
+        import pandas as pd
+        args.input_dim = sum(c.startswith("mri_sig") for c in pd.read_csv(args.train_data_path, nrows=0).columns)
 
     # model initialization
     model = models.DWI_DETR(args)

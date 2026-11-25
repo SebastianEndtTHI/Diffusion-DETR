@@ -17,7 +17,7 @@ def get_args_parser():
 
 
     # diffusion protocol
-    parser.add_argument('--diff_file', default="datagen/diffusion_protocols/diff_dirs_166.txt", type=str, help="path to diffusion protocol file.")
+    parser.add_argument('--diff_file', default="cfin_multib", type=str, help="path to diffusion protocol file, or 'cfin_multib': b <= 1000 protocol of the CFIN in vivo data (Hansen & Jespersen 2016), derived from the dipy download on first use.")
 
 
     # compartments
@@ -37,6 +37,11 @@ def get_args_parser():
 
 
 def main(args):
+    # resolve the default protocol (downloads the CFIN data via dipy on first use)
+    if args.diff_file == "cfin_multib":
+        from invivo.datasets import cfin_protocol_file
+        args.diff_file = cfin_protocol_file()
+
     # set global seed
     np.random.seed(args.seed)
 
